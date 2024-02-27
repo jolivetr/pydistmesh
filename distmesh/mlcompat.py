@@ -65,15 +65,20 @@ def interp2_linear(x,y,z,xi,yi):
     -------
     zi : array, shape (n,)
     """
-    return spinterp.RectBivariateSpline(x,y,z,kx=1,ky=1).ev(xi,yi)
+    #return spinterp.RectBivariateSpline(x,y,z,kx=1,ky=1).ev(xi,yi)
+    p = np.vstack((x.flatten(), y.flatten())).T
+    v = z.flatten()
+    f = spinterp.LinearNDInterpolator(p, z)
+    pi = np.vstack((xi.flatten(), yi.flatten())).T
+    return f(pi)
 
 def interp3_linear(x,y,z, w, xi,yi,zi):
     """Similar to interpn(..., '*linear') in MATLAB for dim=3"""
-    p = np.vstack((x.flat, y.flat, z.flat)).T
-    v = w.flaten()
+    p = np.vstack((x.flatten(), y.flatten(), z.flatten())).T
+    v = w.flatten()
     f = spinterp.LinearNDInterpolator(p, v)
 
-    pi = np.vstack((xi.flat, yi.flat, zi.flat)).T
+    pi = np.vstack((xi.flatten(), yi.flatten(), zi.flatten())).T
     return f(pi)
 
 def setdiff_rows(A, B, return_index=False):

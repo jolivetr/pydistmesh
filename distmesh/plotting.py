@@ -135,7 +135,8 @@ def axes_simpplot3d(ax, p, t, pmask=None, **kwargs):
     facecolor : facecolor
     ifacecolor : facecolor for faces exposed by pmask
     """
-    if not ax._hold: ax.cla()
+    #if not ax._hold: ax.cla()
+    ax.cla()
     had_data = ax.has_data()
 
     facecolor = kwargs.pop('facecolor', (0.8, 0.9, 1.0))

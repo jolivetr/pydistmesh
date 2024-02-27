@@ -15,6 +15,7 @@
 #-----------------------------------------------------------------------------
 
 import numpy as np
+from .mlcompat import *
 
 __all__ = [
     # Distance functions:
@@ -86,12 +87,12 @@ def dintersect(d1,d2):
 def dmatrix3d(p,xx,yy,zz,dd):
     """Signed distance function by interpolation of the values dd on the
     Cartesian grid xx, yy, zz."""
-    return ml.interp3_linear(xx,yy,zz,dd,p[:,0],p[:,1],p[:,2])
+    return interp3_linear(xx,yy,zz,dd,p[:,0],p[:,1],p[:,2])
 
 def dmatrix(p,xx,yy,dd):
     """Signed distance function by interpolation of the values dd on the
     Cartesian grid xx, yy."""
-    return ml.interp2_linear(xx,yy,dd,p[:,0],p[:,1])
+    return interp2_linear(xx,yy,dd,p[:,0],p[:,1])
 
 def dpoly(p,pv):
     """Signed distance function for polygon with vertices pv.
@@ -165,12 +166,12 @@ def dunion(d1,d2):
 def hmatrix3d(p,xx,yy,zz,dd,hh):
     """Mesh size function by interpolation of the values hh on the Cartesian
     grid xx, yy, zz."""
-    return ml.interp3_linear(xx,yy,zz,hh,p[:,0],p[:,1],p[:,2]);
+    return interp3_linear(xx,yy,zz,hh,p[:,0],p[:,1],p[:,2]);
 
 def hmatrix(p,xx,yy,dd,hh):
     """Mesh size function by interpolation of the values hh on the Cartesian
     grid xx, yy."""
-    return ml.interp2_linear(xx,yy,hh,p[:,1],p[:,2]);
+    return interp2_linear(xx,yy,hh,p[:,1],p[:,2]);
 
 def huniform(p):
     """Implements the trivial uniform mesh size function h=1."""
