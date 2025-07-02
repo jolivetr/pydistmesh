@@ -122,7 +122,7 @@ def distmeshnd(fd, fh, h0, bbox, pfix=None, fig='gcf'):
         dist = lambda p1, p2: np.sqrt(((p1-p2)**2).sum(1))
         if (dist(p, pold)/h0).max() > ttol:          # Any large movement?
             pold = p.copy()                          # Save current positions
-            t = spspatial.Delaunay(p).vertices       # List of triangles
+            t = spspatial.Delaunay(p).simplices       # List of triangles
             pmid = p[t].sum(1)/(dim+1)               # Compute centroids
             t = t[fd(pmid) < -geps]                  # Keep interior triangles
             # 4. Describe each bar by a unique pair of nodes
